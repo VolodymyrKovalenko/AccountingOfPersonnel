@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StartPage</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" type="text/css" href="../static/css/var25_css.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-6 ">
+                <h2 style="color: #003d7a" class="title">Accounting of personnel</h2>
+                <p style=" color:white" class="startPage1div">Wide range opportunities to permanent monitoring of employees at the enterprise online.<br>
+                The ability to quickly add and remove employees to the main enterprise database.</p>
+            </div>
+            <div class="col-6 ">
+                <div class="signIn">
+                    <h2 style="color:#003d7a " class="title">SignIn</h2>
+                    <form method="post" action="">
+						<input type="text" name="login" placeholder="Login" value="{{request.form.login}}">
+						<input type="password" name="password" placeholder="Password" value="{{request.form.password}}">
+						<p><input type="submit" name="singIn" value="Submit"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

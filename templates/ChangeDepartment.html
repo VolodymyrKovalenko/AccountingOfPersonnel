@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Change department</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+	<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/var25_css.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/var21_css.css">
+
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+				<div class="signIn">
+					<div class="signHead">
+						<h2 class="addNewSubdivision">Change department</h2>
+					</div>
+
+					<form id="AddTypeForm" method="post" action="">
+                    <select name="subd" action="" id="subdivisionFRM">
+                        {% for subd in subdivision %}
+                            {% if subd.id == result_subd.id %}
+                                <option value="{{ subd.id }}" SELECTED>{{ subd.name }}</option>
+                            {% else %}
+                            <option value="{{ subd.id }}" >{{ subd.name }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                        <input type="text" name="department" placeholder="Department Name" value="{{ form.department.data }}">
+                        <p><input type="submit" class="btn btn-primary" value="Change department"></p>
+
+					</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

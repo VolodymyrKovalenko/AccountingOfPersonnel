@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Change worksheet</title>
+	<link rel="stylesheet" type="text/css" href="../static/css/reset.css">
+	<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/var25_css.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/var21_css.css">
+
+    <style>
+    #receiptForm h5, #receiptForm  select, #receiptForm  input{
+	    display: inline-block;
+        margin-top: 0;
+        margin-bottom: 12px;
+        padding-top: 0;
+        padding-bottom: 0;
+
+    }
+    #receiptForm h5{
+        width: 35%;
+        text-align: center;
+{#        padding-right: 10px;#}
+
+
+    }
+    #receiptForm  select, #receiptForm  input{
+	    width: 60%;
+    }
+    </style>
+</head>
+<body>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-10 offset-md-1">
+				<div class="signIn" style="margin-top: 10px; max-width: 600px">
+					<div class="signHead">
+						<h2 class="addNewSubdivision">Details worksheet</h2>
+					</div>
+
+					<form id="receiptForm" class="receiptForm1" method="post" action="">
+                        <h5>Subdivision</h5>
+
+
+
+                        <select name="sub" action="" id="category">
+                            {% for sub in subdivision_html %}
+                                {% if sub.id == res_dep.subdivision_id %}
+                                    <option value="{{ sub.id }}" SELECTED>{{ sub.name }}</option>
+                                {% else %}
+                                    <option value="{{ sub.id }}" >{{ sub.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <h5>Department</h5>
+                            <select name="depart" action="" id ="selectFason">
+                             <option value="{{ res_dep }}">{{ res_dep }}</option>
+                            </select>
+
+
+                        <script>
+                            var categoryId = 1;
+                            category.onclick = function(event){
+                                if(event.target.tagName != 'OPTION') return;
+                                categoryId = event.target.value;
+
+                                let length = selectFason.children.length;
+                                for(let i = length-1; i >= 0; i--){
+                                    if(selectFason.children[i].dataValue != categoryId)
+                                        selectFason.children[i].remove();
+                                }
+                                {% for depart in department_html %}
+                                    if ('{{depart.subdivision_id}}' == categoryId){
+                                        let opt = document.createElement('option');
+                                        opt.innerHTML = '{{depart.name}}';
+                                        opt.value = '{{depart.name}}';
+
+                                        selectFason.append(opt);
+                                    }
+                                {% endfor %}
+                                selectFason.hidden = false;
+                            }
+                        </script>
+                        <h5>Position</h5>
+                        <select name="position" action="" id="subdivisionFRM">
+                        {% for position in position_html %}
+                            {% if position.id == res_pos.id %}
+                                <option value="{{ position.id }}" SELECTED>{{ position.name }}</option>
+                            {% else %}
+                                <option value="{{ position.id }}">{{ position.name }}</option>
+                            {% endif %}
+
+                        {% endfor %}
+                        </select>
+                        <h5>Full name</h5>
+                        <input type="text" name="name" placeholder="Fullname" value="{{ form.name.data }}">
+                        <h5>Receipt data</h5>
+                        <input type="text" name="receipt_date" placeholder="Receipt_date" value="{{form.receipt_date.data}}" onfocus="(this.type='date')"><!-- id не міняти -->
+                        <h5>Academic title</h5>
+                        <input type="text" name="academic_title" placeholder="Academic_title" value="{{form.academic_title.data}}">
+                        <h5>Birthday</h5>
+                        <input type="text" name="year_of_birth" placeholder="Year_of_birth" value="{{form.year_of_birth.data}}" onfocus="(this.type='date')">
+{#                        <input type="text" name="date_of_dismissal" placeholder="Date_of_dismissal" value="{{request.form.date_of_dismissal}}" onfocus="(this.type='date')">#}
+                        <h5>Address</h5>
+                        <input type="text" name="address" placeholder="Address" value="{{form.address.data}}">
+                        <h5>Telephone</h5>
+                        <input type="text" name="telephone" placeholder="Telephone" value="{{form.telephone.data}}">
+                        <h5>Previous employment</h5>
+                        <input type="text" name="previous_employment" placeholder="Previous_employment" value="{{form.previous_employment.data}}">
+                        <h5>Diploma number</h5>
+                        <input type="text" name="diploma_number" placeholder="Diploma_number" value="{{form.diploma_number.data}}">
+
+
+                    	<p style="margin-left: 160px"><input style="width: 290px; height: 35px" type="submit" class="btn btn-primary" value="Change worksheet"></p>
+					</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
